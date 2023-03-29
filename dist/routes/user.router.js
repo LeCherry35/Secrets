@@ -1,4 +1,5 @@
 "use strict";
+// External Dependencies
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -12,23 +13,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.userRouter = void 0;
 const express_1 = __importDefault(require("express"));
-const dotenv_1 = __importDefault(require("dotenv"));
-const database_service_1 = require("./services/database.service");
-const user_router_1 = require("./routes/user.router");
-dotenv_1.default.config();
-const app = (0, express_1.default)();
-const port = process.env.PORT;
-const start = () => __awaiter(void 0, void 0, void 0, function* () {
+// Global Config
+exports.userRouter = express_1.default.Router();
+exports.userRouter.use(express_1.default.json());
+// GET
+exports.userRouter.get("/", (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield (0, database_service_1.connectToDatabase)();
-        app.use('/users', user_router_1.userRouter);
-        app.listen(port, () => {
-            console.log(`[server]: Serveritio is running at http://localhost:${port}`);
-        });
+        //    const users = (await collections.secrets.find({}).toArray()) as User[];
+        res.status(200).send('users');
+        // res.status(200).send(users);
     }
-    catch (e) {
-        console.log(e);
+    catch (_a) {
+        res.status(500).send('error');
     }
-});
-start();
+}));
+// POST
+// PUT
+// DELETE
