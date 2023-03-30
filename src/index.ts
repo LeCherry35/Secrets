@@ -12,9 +12,9 @@ const start = async () => {
   try {
     await connectToDatabase()
 
-    app.use('/users',userRouter)
+    app.use('/users', userRouter)
     app.listen(port, () => {
-      console.log(`[server]: Serveritio is running at http://localhost:${port}`)
+      console.log(`[server]: Serverito is running at http://localhost:${port}`)
     });
 
   } catch (e) {

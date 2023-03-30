@@ -49,7 +49,7 @@ function connectToDatabase() {
             const client = new mongoDB.MongoClient(process.env.DB_CONN_STRING);
             yield client.connect();
             const db = client.db(process.env.DB_NAME);
-            const gamesCollection = db.collection(process.env.GAMES_COLLECTION_NAME);
+            const gamesCollection = db.collection(process.env.SECRETS_COLLECTION_NAME);
             exports.collections.secrets = gamesCollection;
             console.log(`Successfully connected to database: ${db.databaseName} and collection: ${gamesCollection.collectionName}`);
         }
